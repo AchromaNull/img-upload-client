@@ -3,6 +3,7 @@ import React, { Component, Fragment } from 'react'
 import { Route } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
 
 import AuthenticatedRoute from './components/AuthenticatedRoute/AuthenticatedRoute'
 import AutoDismissAlert from './components/AutoDismissAlert/AutoDismissAlert'
@@ -90,8 +91,9 @@ class App extends Component {
         </main>
         <div>
           <Form.Group controlId="formFile" className="mb-3">
-            <Form.Label>Default file input example</Form.Label>
+            <Form.Label>Upload Your Pic Yo</Form.Label>
             <Form.Control type="file" />
+            <Button variant="primary" type="submit">Submit</Button>
           </Form.Group>
         </div>
       </Fragment>
