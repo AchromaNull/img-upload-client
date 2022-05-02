@@ -22,6 +22,10 @@ class App extends Component {
     }
   }
 
+   handleChange = (event) => {
+     console.log(event.target.files)
+   }
+
   setUser = (user) => this.setState({ user })
 
   clearUser = () => this.setState({ user: null })
@@ -90,9 +94,9 @@ class App extends Component {
           />
         </main>
         <div>
-          <Form.Group controlId="formFile" className="mb-3">
+          <Form.Group controlId="formFile" className="mb-3" id="upload-file-input" >
             <Form.Label>Upload Your Pic Yo</Form.Label>
-            <Form.Control type="file" />
+            <Form.Control type="file" onChange={this.handleChange}/>
             <Button variant="primary" type="submit">Submit</Button>
           </Form.Group>
         </div>
