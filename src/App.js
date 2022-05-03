@@ -84,7 +84,14 @@ class App extends Component {
               <ChangePassword msgAlert={this.msgAlert} user={user} />
             )}
           />
-          <Upload />
+          <AuthenticatedRoute
+            user={user}
+            path='/upload'
+            render={() => (
+              <Upload msgAlert={this.msgAlert} user={user} />
+            )}
+          />
+          {/* <Upload /> */}
         </main>
       </Fragment>
     )
