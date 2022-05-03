@@ -74,7 +74,7 @@ function App () {
 
     <div className="App">
       {upload.url ? (<img className="display-image" alt={upload.url} src={upload.url} />) : ''}
-      {loading ? (<img className="display-loading" alt="loading gif" src="https://flevix.com/wp-content/uploads/2019/07/Curve-Loading.gif"/>) : ''}
+      {loading ? (<img className="display-loading" alt="loading gif" src="https://cutewallpaper.org/21/loading-gif-transparent-background/Download-Loading-Gif-Generator-Transparent-Background-PNG-.gif"/>) : ''}
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="formFile" className="mb-3" id="upload-file-input" >
           <Form.Label>Upload Your Pic Yo</Form.Label>
