@@ -25,6 +25,7 @@ export default function Upload () {
       method: 'POST',
       data
     })
+      .then(console.log(data))
       .then(res => setUpload(res.data.upload))
       .then(() => setLoading(false))
       .catch(console.error)
