@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button'
 import React, { useState } from 'react'
 import axios from 'axios'
 import apiUrl from './apiConfig'
+// import Thumbnail from './components/Body/Thumbnail'
 
 const FormData = require('form-data')
 
@@ -29,26 +30,49 @@ export default function Upload ({ user }) {
       data
       // : data + `${user}`
     })
+      .then((res) => {
+        console.log(res.data.upload)
+        return (res)
+      })
       .then(res => setUpload(res.data.upload))
       .then(() => setLoading(false))
       .catch(console.error)
   }
   return (
     <div>
-      {upload.url ? (<img className='display-image' alt={upload.url} src={upload.url} />) : ('')}
+      {upload.url
+        ? (
+          <img className='display-image' alt={upload.url} src={upload.url} />
+        )
+        : (
+          ''
+        )}
       {loading
-        ? (<img className='display-loading' alt='loading gif'
-          src='https://cutewallpaper.org/21/loading-gif-transparent-background/Download-Loading-Gif-Generator-Transparent-Background-PNG-.gif'/>)
-        : ('')}
+        ? (
+          <img
+            className='display-loading'
+            alt='loading gif'
+            src='https://cutewallpaper.org/21/loading-gif-transparent-background/Download-Loading-Gif-Generator-Transparent-Background-PNG-.gif'
+          />
+        )
+        : (
+          ''
+        )}
       <Form onSubmit={handleSubmit}>
-        <Form.Group controlId='formFile' className='mb-3' id='upload-file-input'>
+        <Form.Group
+          controlId='formFile'
+          className='mb-3'
+          id='upload-file-input'>
           <Form.Label>Upload Your Pic Yo</Form.Label>
           <Form.Control type='file' onChange={handleChange} />
           <Button variant='primary' type='submit' value='Submit'>
-                Submit
+            Submit
           </Button>
         </Form.Group>
       </Form>
+      <div>
+        {/* <Thumbnail /> */}
+      </div>
     </div>
   )
 }
