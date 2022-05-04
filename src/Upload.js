@@ -7,12 +7,12 @@ import apiUrl from './apiConfig'
 
 const FormData = require('form-data')
 
-export default function Upload () {
+export default function Upload ({ user }) {
   const [selected, setSelected] = useState(null)
   const [upload, setUpload] = useState({})
   const [loading, setLoading] = useState(false)
-
   // const [user, setUser] = useState(user)
+
   const handleChange = (event) => {
     setSelected(event.target.files[0])
   }
@@ -24,10 +24,13 @@ export default function Upload () {
     axios({
       url: apiUrl + '/uploads',
       method: 'POST',
+      headers: {
+        Authorization: `Bearer ${user.token}`
+      },
       data
+      // : data + `${user}`
     })
       .then((res) => {
-        console.log(upload.url)
         console.log(res.data.upload)
         return (res)
       })
