@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React from 'react'
 import apiUrl from './apiConfig'
 
 export default function IndexUpload ({ user }) {
@@ -11,9 +11,9 @@ export default function IndexUpload ({ user }) {
     headers: {
       Authorization: `Bearer ${user.token}`
     }
-      .then(console.log('hello'))
-      .catch(console.error)
   })
+    .then((res) => console.log(res))
+    .catch(console.error)
 
   return (
     <div>
