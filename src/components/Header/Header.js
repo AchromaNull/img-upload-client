@@ -7,6 +7,7 @@ const authenticatedOptions = (
   <Fragment>
     <NavLink to='/change-password' className='nav-link'>Change Password</NavLink>
     <NavLink to='/upload' className='nav-link'>Upload an Image</NavLink>
+    <NavLink to='/update' className='nav-link'>Update an Image</NavLink>
     <NavLink to='/delete' className='nav-link'>Delete an Image</NavLink>
     <NavLink to='/sign-out' className='nav-link'>Sign Out</NavLink>
     <NavLink to='/collections' className='nav-link'>collections</NavLink>
