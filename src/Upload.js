@@ -1,5 +1,7 @@
 import Form from 'react-bootstrap/Form'
+import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button'
+import InputGroup from 'react-bootstrap/InputGroup'
 import React, { useState } from 'react'
 import axios from 'axios'
 import apiUrl from './apiConfig'
@@ -14,12 +16,14 @@ export default function Upload ({ user }) {
   const [upload, setUpload] = useState({})
   const [loading, setLoading] = useState(false)
   // const [info, setInfo] = useState('')
+
   // const [user, setUser] = useState(user)
   const [caption, setCaption] = React.useState('')
   const [title, setTitle] = React.useState('')
 
   const handleChange = (event) => {
     setSelected(event.target.files[0])
+    // console.log(event.target.files[0])
   }
   const handleSubmit = (event) => {
     const details = {
@@ -30,8 +34,12 @@ export default function Upload ({ user }) {
     setLoading(true)
     const data = new FormData()
     data.append('upload', selected)
+
+    console.log(upload)
+
     data.append('caption', caption)
     data.append('title', title)
+
     axios({
       url: apiUrl + '/uploads',
       method: 'POST',
@@ -43,7 +51,7 @@ export default function Upload ({ user }) {
       // : data + `${user}`
     })
       .then((res) => {
-        console.log(res.data.upload)
+        console.log(res.data)
         return (res)
       })
       .then(res => setUpload(res.data.upload))
@@ -77,13 +85,23 @@ export default function Upload ({ user }) {
         : (
           ''
         )}
-      <Form onSubmit={handleSubmit} enctype='multipart/form-data'>
+
+          <Form onSubmit={handleSubmit} enctype='multipart/form-data'>
+
         <Form.Group
           controlId='formFile'
           className='mb-3'
           id='upload-file-input'>
           <Form.Label>Upload Your Pic Yo</Form.Label>
           <Form.Control type='file' onChange={handleChange} />
+          <InputGroup className="mb-3">
+            <InputGroup.Text id="basic-addon1">Caption</InputGroup.Text>
+            <FormControl
+              placeholder="Caption"
+              aria-label="Caption"
+              aria-describedby="basic-addon1"
+            />
+          </InputGroup>
           <Button variant='primary' type='submit' value='Submit'>
 Submit
           </Button>
