@@ -17,7 +17,7 @@ import Upload from './Upload'
 import Delete from './Delete'
 // import Thumbnail from './components/Body/Thumbnail'
 
-import Thumbnail from './components/Body/Thumbnail'
+// import Thumbnail from './components/Body/Thumbnail'
 import IndexUpload from './IndexUpload'
 
 class App extends Component {

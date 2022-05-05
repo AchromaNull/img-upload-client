@@ -86,7 +86,7 @@ export default function Upload ({ user }) {
           ''
         )}
 
-          <Form onSubmit={handleSubmit} enctype='multipart/form-data'>
+      <Form onSubmit={handleSubmit} enctype='multipart/form-data'>
 
         <Form.Group
           controlId='formFile'
