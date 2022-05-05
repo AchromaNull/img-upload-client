@@ -1,4 +1,5 @@
 import Form from 'react-bootstrap/Form'
+
 import Button from 'react-bootstrap/Button'
 import React, { useState } from 'react'
 import axios from 'axios'
@@ -9,27 +10,38 @@ import FormControl from 'react-bootstrap/FormControl'
 
 // const FormData = require('form-data')
 
-export default function Delete ({ user }) {
-  // const [selected, setSelected] = useState(null)
-  // const [upload, setUpload] = useState({})
-  // const [loading, setLoading] = useState(false)
-  // const [user, setUser] = useState(user)
+export default function Update ({ user }) {
+  const [imageId, setImageId] = useState(null)
+  const [imageTitle, setImageTitle] = useState('')
+  const [imageCaption, setImageCaption] = useState('')
 
-  const handleChange = (event) => {
+  const handleChangeId = (event) => {
     setImageId(event.target.value)
   }
-  const [imageId, setImageId] = useState('')
+  const handleChangeTitle = (event) => {
+    setImageTitle(event.target.value)
+  }
+  const handleChangeCaption = (event) => {
+    setImageCaption(event.target.value)
+  }
 
   const handleSubmit = (event) => {
-    // event.preventDefault()
+    event.preventDefault()
     // data.append('delete', selected)
+    const updateData = {
 
+      title: { imageTitle },
+      caption: { imageCaption }
+
+    }
+    console.log(updateData)
     axios({
-      url: apiUrl + `/delete/${imageId}`,
-      method: 'DELETE',
+      url: apiUrl + `/update/${imageId}`,
+      method: 'PATCH',
       headers: {
         Authorization: `Bearer ${user.token}`
-      }
+      },
+      data: { updateData }
     })
 
     // axios({
@@ -42,7 +54,7 @@ export default function Delete ({ user }) {
     //   // : data + `${user}`
     // })
       .then((res) => {
-        console.log('deleted')
+        console.log('Updated')
         return (res)
       })
       // .then(res => setUpload(res.data.upload))
@@ -60,24 +72,7 @@ export default function Delete ({ user }) {
   //   }
   return (
     <div>
-      {/* {upload.url
-        ? (
-          <img className='display-image' alt={upload.url} src={upload.url} />
-        )
-        : (
-          ''
-        )}
-      {loading
-        ? (
-          <img
-            className='display-loading'
-            alt='loading gif'
-            src='https://cutewallpaper.org/21/loading-gif-transparent-background/Download-Loading-Gif-Generator-Transparent-Background-PNG-.gif'
-          />
-        )
-        : (
-          ''
-        )} */}
+
       <Form onSubmit={handleSubmit}>
         <Form.Group
           controlId='formFile'
@@ -97,8 +92,10 @@ export default function Delete ({ user }) {
         </Form.Group>
       </Form>
       <div>
-        <input id="imageId" onChange={handleChange} type="text" value={imageId}></input>
-        <button value="submit" onClick={handleSubmit}>Kill</button>
+        <input id="imageId" name="imageId" onChange={handleChangeId} type="text" placeholder="image ID"value={imageId}></input>
+        <input id="imageId" name="imageTitle" onChange={handleChangeTitle} type="text" placeholder="new Title" value={imageTitle}></input>
+        <input id="imageId" name="ImageCaption" onChange={handleChangeCaption} type="text" placeholder="new Caption" value={imageCaption}></input>
+        <button value="submit" onClick={handleSubmit}>Update</button>
       </div>
     </div>
   )

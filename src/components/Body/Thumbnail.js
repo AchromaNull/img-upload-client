@@ -1,5 +1,5 @@
 // import { data } from 'autoprefixer'
-import React from 'react'
+// import React from 'react'
 // import Gallery from './Gallery'
 // import
 // import Upload from '../../../src/Upload'
@@ -7,14 +7,14 @@ import React from 'react'
 // const [state, setState] = Upload()
 // setState((state) => state.data.upload.url)
 
-export default function Thumbnail () {
-  return (
-    <div>
-      <h1>Hai guys</h1>
-      {/* <Gallery /> */}
-    </div>
-  )
-}
+// export default function Thumbnail () {
+//   return (
+//     <div>
+//       <h1>Hai guys</h1>
+//       {/* <Gallery /> */}
+//     </div>
+//   )
+// }
 
 // // make  class componentn will have local states
 // // render component, pass property save to state
