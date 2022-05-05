@@ -1,6 +1,6 @@
 // import { data } from 'autoprefixer'
 import React from 'react'
-import Gallery from './Gallery'
+// import Gallery from './Gallery'
 // import
 // import Upload from '../../../src/Upload'
 
@@ -11,11 +11,10 @@ export default function Thumbnail () {
   return (
     <div>
       <h1>Hai guys</h1>
-      <Gallery />
+      {/* <Gallery /> */}
     </div>
   )
 }
-console.log('')
 
 // // make  class componentn will have local states
 // // render component, pass property save to state
