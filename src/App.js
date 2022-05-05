@@ -13,7 +13,8 @@ import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 import Upload from './Upload'
-import Thumbnail from './components/Body/Thumbnail'
+import Delete from './Delete'
+// import Thumbnail from './components/Body/Thumbnail'
 class App extends Component {
   constructor (props) {
     super(props)
@@ -91,10 +92,16 @@ class App extends Component {
             render={() => <Upload msgAlert={this.msgAlert} user={user} />}
           />
           <AuthenticatedRoute
+            exact
+            user={user}
+            path='/delete'
+            render={() => <Delete msgAlert={this.msgAlert} user={user} />}
+          />
+          {/* <AuthenticatedRoute
             user={user}
             exact path='/'
             render={() => <Thumbnail msgAlert={this.msgAlert} user={user} />}
-          />
+          /> */}
           {/* <Upload /> */}
           {/* <Thumbnail /> */}
         </main>

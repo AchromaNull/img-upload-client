@@ -1,37 +1,37 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import apiUrl from '../../apiConfig'
-import { data } from 'autoprefixer'
+// import React, { useState, useEffect } from 'react'
+// import axios from 'axios'
+// import apiUrl from '../../apiConfig'
+// import { data } from 'autoprefixer'
 
-export default function Gallery () {
-  const [pics, setPics] = useState([])
+// export default function Gallery () {
+//   const [pics, setPics] = useState([])
 
-  useEffect(() => {
-    // axios.get('https://jsonplaceholder.typicode.com.posts')
-    axios({
-      url: apiUrl + '/uploads',
-      method: 'GET',
-      data
-    })
-      .then(res => {
-        console.log(res)
-        setPics(res.data.upload)
-      })
-      .catch(err => {
-        console.log(err)
-      })
-    //   removed ,[]
-  }, [])
-  return (
-    <div>
+//   useEffect(() => {
+//     // axios.get('https://jsonplaceholder.typicode.com.posts')
+//     axios({
+//       url: apiUrl + '/uploads',
+//       method: 'GET',
+//       data
+//     })
+//       .then(res => {
+//         console.log(res)
+//         setPics(res.data.upload)
+//       })
+//       .catch(err => {
+//         console.log(err)
+//       })
+//     //   removed ,[]
+//   }, [])
+//   return (
+//     <div>
 
-      {pics.map((pics) => (
-        <li key={pics.id}>{pics.url}</li>
-      ))}
+//       {pics.map((pics) => (
+//         <li key={pics.id}>{pics.url}</li>
+//       ))}
 
-    </div>
-  )
-}
+//     </div>
+//   )
+// }
 
 // const [info, setInfo] = useState([])
 // const [things, setThings] = useState(null)

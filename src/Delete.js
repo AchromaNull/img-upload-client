@@ -1,51 +1,66 @@
 import Form from 'react-bootstrap/Form'
-import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button'
-import InputGroup from 'react-bootstrap/InputGroup'
 import React, { useState } from 'react'
 import axios from 'axios'
 import apiUrl from './apiConfig'
+import InputGroup from 'react-bootstrap/InputGroup'
+import FormControl from 'react-bootstrap/FormControl'
 // import Thumbnail from './components/Body/Thumbnail'
 
-const FormData = require('form-data')
+// const FormData = require('form-data')
 
 export default function Upload ({ user }) {
-  const [selected, setSelected] = useState(null)
-  const [upload, setUpload] = useState({})
-  const [loading, setLoading] = useState(false)
-
+  // const [selected, setSelected] = useState(null)
+  // const [upload, setUpload] = useState({})
+  // const [loading, setLoading] = useState(false)
   // const [user, setUser] = useState(user)
 
   const handleChange = (event) => {
-    setSelected(event.target.files[0])
-    // console.log(event.target.files[0])
+    setImageId(event.target.value)
   }
+  const [imageId, setImageId] = useState('')
+
   const handleSubmit = (event) => {
-    event.preventDefault()
-    setLoading(true)
-    const data = new FormData()
-    data.append('upload', selected)
-    console.log(upload)
+    // event.preventDefault()
+    // data.append('delete', selected)
+
     axios({
-      url: apiUrl + '/uploads',
-      method: 'POST',
+      url: apiUrl + `/delete/${imageId}`,
+      method: 'DELETE',
       headers: {
         Authorization: `Bearer ${user.token}`
-      },
-      data
-      // : data + `${user}`
+      }
     })
+
+    // axios({
+    //   url: apiUrl + '/uploads',
+    //   method: 'POST',
+    //   headers: {
+    //     Authorization: `Bearer ${user.token}`
+    //   },
+    //   data
+    //   // : data + `${user}`
+    // })
       .then((res) => {
-        console.log(res.data)
+        console.log('deleted')
         return (res)
       })
-      .then(res => setUpload(res.data.upload))
-      .then(() => setLoading(false))
+      // .then(res => setUpload(res.data.upload))
+      // .then(() => setLoading(false))
       .catch(console.error)
   }
+
+  //   const handleDelete = (event) => {
+  //     console.log(event)
+  //     console.log(document.getElementById('imageId'))
+  //     const imageValue = document.getElementById('imageId').value
+
+  //     setImageId(imageValue)
+  //     handleSubmit()
+  //   }
   return (
     <div>
-      {upload.url
+      {/* {upload.url
         ? (
           <img className='display-image' alt={upload.url} src={upload.url} />
         )
@@ -62,29 +77,28 @@ export default function Upload ({ user }) {
         )
         : (
           ''
-        )}
-      <Form onSubmit={handleSubmit} encType="multipart/form-data">
+        )} */}
+      <Form onSubmit={handleSubmit}>
         <Form.Group
           controlId='formFile'
           className='mb-3'
           id='upload-file-input'>
-          <Form.Label>Upload Your Pic Yo</Form.Label>
-          <Form.Control type='file' onChange={handleChange} />
           <InputGroup className="mb-3">
-            <InputGroup.Text id="basic-addon1">Caption</InputGroup.Text>
+            <InputGroup.Text id="basic-addon1">Enter Image ID to delete.</InputGroup.Text>
             <FormControl
-              placeholder="Caption"
+              placeholder="Image ID"
               aria-label="Caption"
               aria-describedby="basic-addon1"
             />
           </InputGroup>
           <Button variant='primary' type='submit' value='Submit'>
-            Submit
+            Delete
           </Button>
         </Form.Group>
       </Form>
       <div>
-        {/* <Thumbnail /> */}
+        <input id="imageId" onChange={handleChange} type="text" value={imageId}></input>
+        <button value="submit" onClick={handleSubmit}>Kill</button>
       </div>
     </div>
   )
