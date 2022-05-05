@@ -13,8 +13,13 @@ import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 import Upload from './Upload'
+
 import Delete from './Delete'
 // import Thumbnail from './components/Body/Thumbnail'
+
+import Thumbnail from './components/Body/Thumbnail'
+import IndexUpload from './IndexUpload'
+
 class App extends Component {
   constructor (props) {
     super(props)
@@ -104,9 +109,17 @@ class App extends Component {
           /> */}
           {/* <Upload /> */}
           {/* <Thumbnail /> */}
+          <AuthenticatedRoute
+            user={user}
+            exact path='/'
+            render={() => (
+              <IndexUpload msgAlert={this.msgAlert} user={user} />
+            )}
+          />
         </main>
       </Fragment>
     )
   }
 }
+
 export default App

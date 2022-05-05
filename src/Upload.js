@@ -5,6 +5,8 @@ import InputGroup from 'react-bootstrap/InputGroup'
 import React, { useState } from 'react'
 import axios from 'axios'
 import apiUrl from './apiConfig'
+import Deets from './components/Body/Deets'
+// import { data } from 'autoprefixer'
 // import Thumbnail from './components/Body/Thumbnail'
 
 const FormData = require('form-data')
@@ -13,26 +15,39 @@ export default function Upload ({ user }) {
   const [selected, setSelected] = useState(null)
   const [upload, setUpload] = useState({})
   const [loading, setLoading] = useState(false)
+  // const [info, setInfo] = useState('')
 
   // const [user, setUser] = useState(user)
+  const [caption, setCaption] = React.useState('')
+  const [title, setTitle] = React.useState('')
 
   const handleChange = (event) => {
     setSelected(event.target.files[0])
     // console.log(event.target.files[0])
   }
   const handleSubmit = (event) => {
+    const details = {
+      caption: { caption },
+      title: { title }
+    }
     event.preventDefault()
     setLoading(true)
     const data = new FormData()
     data.append('upload', selected)
+
     console.log(upload)
+
+    data.append('caption', caption)
+    data.append('title', title)
+
     axios({
       url: apiUrl + '/uploads',
       method: 'POST',
       headers: {
         Authorization: `Bearer ${user.token}`
       },
-      data
+      data,
+      body: details
       // : data + `${user}`
     })
       .then((res) => {
@@ -43,6 +58,13 @@ export default function Upload ({ user }) {
       .then(() => setLoading(false))
       .catch(console.error)
   }
+  // const updateChange = (event) => {
+  //   this.setState({
+  //     caption: [
+  //       { caption: event.target.value }
+  //     ]
+  //   })
+  // }
   return (
     <div>
       {upload.url
@@ -63,7 +85,9 @@ export default function Upload ({ user }) {
         : (
           ''
         )}
-      <Form onSubmit={handleSubmit} encType="multipart/form-data">
+
+          <Form onSubmit={handleSubmit} enctype='multipart/form-data'>
+
         <Form.Group
           controlId='formFile'
           className='mb-3'
@@ -79,13 +103,17 @@ export default function Upload ({ user }) {
             />
           </InputGroup>
           <Button variant='primary' type='submit' value='Submit'>
-            Submit
+Submit
           </Button>
+          <Deets
+            caption={caption}
+            setCaption={setCaption}
+            title={title}
+            setTitle={setTitle}
+          />
         </Form.Group>
       </Form>
-      <div>
-        {/* <Thumbnail /> */}
-      </div>
+      <div>{/* <Thumbnail /> */}</div>
     </div>
   )
 }
