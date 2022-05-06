@@ -1,10 +1,10 @@
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
+// import Form from 'react-bootstrap/Form'
+// import Button from 'react-bootstrap/Button'
 import React, { useState } from 'react'
 import axios from 'axios'
 import apiUrl from './apiConfig'
-import InputGroup from 'react-bootstrap/InputGroup'
-import FormControl from 'react-bootstrap/FormControl'
+// import InputGroup from 'react-bootstrap/InputGroup'
+// import FormControl from 'react-bootstrap/FormControl'
 import { deletedImageSuccess } from './components/AutoDismissAlert/messages'
 
 export default function Delete ({ user, msgAlert }) {
@@ -37,7 +37,7 @@ export default function Delete ({ user, msgAlert }) {
 
   return (
     <div>
-      <Form onSubmit={handleSubmit}>
+      {/* <Form onSubmit={handleSubmit}>
         <Form.Group
           controlId='formFile'
           className='mb-3'
@@ -54,7 +54,7 @@ export default function Delete ({ user, msgAlert }) {
             Delete
           </Button>
         </Form.Group>
-      </Form>
+      </Form> */}
       <div>
         <input id="imageId" onChange={handleChange} type="text" value={imageId}></input>
         <button value="submit" onClick={handleSubmit}>Kill</button>

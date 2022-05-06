@@ -1,7 +1,8 @@
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import apiUrl from './apiConfig'
-// import Delete from './Delete'
+import Delete from './Delete'
+import Update from './Update'
 
 export default function IndexUpload ({ user }) {
   const [uploads, setUploads] = useState([])
@@ -39,14 +40,12 @@ export default function IndexUpload ({ user }) {
     console.log(uploads)
     const uploadJSX = uploads.map(upload => (
       <div key={upload._id}>
-        <p>Thumbnail Here</p>
-        <li>
-          {upload.title}
-        </li>
-        <li>
-          {upload.caption}
-        </li>
-        <li>placeholder info for items with no title/caption</li>
+        <img className='image--index' src={upload.url}/>
+        <li>{upload.title}</li>
+        <li> {upload.caption}</li>
+        <li>{upload._id}</li>
+        <Update />
+        <Delete />
       </div>
     ))
 
