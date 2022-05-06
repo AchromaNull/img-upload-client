@@ -41,9 +41,10 @@ export default function IndexUpload ({ msgAlert, user }) {
     const uploadJSX = uploads.map(upload => (
       <div key={upload._id}>
         <img className='image--index' src={upload.url}/>
+        <li>Owner ID: {upload.owner}</li>
         <li>{upload.title}</li>
-        <li> {upload.caption}</li>
-        <li>{upload._id}</li>
+        <li>{upload.caption}</li>
+        <li>Upload ID: {upload._id}</li>
         <Update />
         <Delete
           user={user}
