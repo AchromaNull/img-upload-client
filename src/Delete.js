@@ -5,25 +5,15 @@ import axios from 'axios'
 import apiUrl from './apiConfig'
 import InputGroup from 'react-bootstrap/InputGroup'
 import FormControl from 'react-bootstrap/FormControl'
-// import Thumbnail from './components/Body/Thumbnail'
+import { deletedImageSuccess } from './components/AutoDismissAlert/messages'
 
-// const FormData = require('form-data')
-
-export default function Delete ({ user }) {
-  // const [selected, setSelected] = useState(null)
-  // const [upload, setUpload] = useState({})
-  // const [loading, setLoading] = useState(false)
-  // const [user, setUser] = useState(user)
-
+export default function Delete ({ user, msgAlert }) {
   const handleChange = (event) => {
     setImageId(event.target.value)
   }
   const [imageId, setImageId] = useState('')
 
   const handleSubmit = (event) => {
-    // event.preventDefault()
-    // data.append('delete', selected)
-
     axios({
       url: apiUrl + `/delete/${imageId}`,
       method: 'DELETE',
@@ -32,52 +22,21 @@ export default function Delete ({ user }) {
       }
     })
 
-    // axios({
-    //   url: apiUrl + '/uploads',
-    //   method: 'POST',
-    //   headers: {
-    //     Authorization: `Bearer ${user.token}`
-    //   },
-    //   data
-    //   // : data + `${user}`
-    // })
       .then((res) => {
-        console.log('deleted')
         return (res)
       })
-      // .then(res => setUpload(res.data.upload))
-      // .then(() => setLoading(false))
+      .finally(() =>
+        msgAlert({
+          heading: 'Deleted Successfully',
+          message: deletedImageSuccess,
+          variant: 'success'
+        })
+      )
       .catch(console.error)
   }
 
-  //   const handleDelete = (event) => {
-  //     console.log(event)
-  //     console.log(document.getElementById('imageId'))
-  //     const imageValue = document.getElementById('imageId').value
-
-  //     setImageId(imageValue)
-  //     handleSubmit()
-  //   }
   return (
     <div>
-      {/* {upload.url
-        ? (
-          <img className='display-image' alt={upload.url} src={upload.url} />
-        )
-        : (
-          ''
-        )}
-      {loading
-        ? (
-          <img
-            className='display-loading'
-            alt='loading gif'
-            src='https://cutewallpaper.org/21/loading-gif-transparent-background/Download-Loading-Gif-Generator-Transparent-Background-PNG-.gif'
-          />
-        )
-        : (
-          ''
-        )} */}
       <Form onSubmit={handleSubmit}>
         <Form.Group
           controlId='formFile'

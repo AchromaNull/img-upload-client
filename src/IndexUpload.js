@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import apiUrl from './apiConfig'
+// import Delete from './Delete'
 
 export default function IndexUpload ({ user }) {
   const [uploads, setUploads] = useState([])
@@ -8,7 +9,7 @@ export default function IndexUpload ({ user }) {
   useEffect(() => {
     axios({
       method: 'GET',
-      url: apiUrl + '/uploads',
+      url: apiUrl + '/all-images',
       headers: {
         Authorization: `Bearer ${user.token}`
       }
