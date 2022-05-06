@@ -4,7 +4,7 @@ import apiUrl from './apiConfig'
 import Delete from './Delete'
 import Update from './Update'
 
-export default function IndexUpload ({ user }) {
+export default function IndexUpload ({ msgAlert, user }) {
   const [uploads, setUploads] = useState([])
   // const [loading, setLoading] = useState(false)
   useEffect(() => {
@@ -46,7 +46,8 @@ export default function IndexUpload ({ user }) {
         <li>{upload._id}</li>
         <Update />
         <Delete
-          user={user} />
+          user={user}
+          msgAlert={msgAlert}/>
       </div>
     ))
 
