@@ -7,25 +7,13 @@ import InputGroup from 'react-bootstrap/InputGroup'
 import FormControl from 'react-bootstrap/FormControl'
 import { deletedImageSuccess } from './components/AutoDismissAlert/messages'
 
-// import Thumbnail from './components/Body/Thumbnail'
-
-// const FormData = require('form-data')
-
 export default function Delete ({ user, msgAlert }) {
-  // const [selected, setSelected] = useState(null)
-  // const [upload, setUpload] = useState({})
-  // const [loading, setLoading] = useState(false)
-  // const [user, setUser] = useState(user)
-
   const handleChange = (event) => {
     setImageId(event.target.value)
   }
   const [imageId, setImageId] = useState('')
 
   const handleSubmit = (event) => {
-    // event.preventDefault()
-    // data.append('delete', selected)
-
     axios({
       url: apiUrl + `/delete/${imageId}`,
       method: 'DELETE',

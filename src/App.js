@@ -122,6 +122,13 @@ class App extends Component {
               <IndexUpload msgAlert={this.msgAlert} user={user} />
             )}
           />
+          <AuthenticatedRoute
+            user={user}
+            exact path='/all-images'
+            render={() => (
+              <IndexUpload msgAlert={this.msgAlert} user={user} />
+            )}
+          />
         </main>
       </Fragment>
     )
