@@ -1,11 +1,11 @@
 import Form from 'react-bootstrap/Form'
 
-import Button from 'react-bootstrap/Button'
+// import Button from 'react-bootstrap/Button'
 import React, { useState } from 'react'
 import axios from 'axios'
 import apiUrl from './apiConfig'
 import InputGroup from 'react-bootstrap/InputGroup'
-import FormControl from 'react-bootstrap/FormControl'
+// import FormControl from 'react-bootstrap/FormControl'
 // import Thumbnail from './components/Body/Thumbnail'
 
 // const FormData = require('form-data')
@@ -79,16 +79,16 @@ export default function Update ({ user }) {
           className='mb-3'
           id='upload-file-input'>
           <InputGroup className="mb-3">
-            <InputGroup.Text id="basic-addon1">Enter Image ID to delete.</InputGroup.Text>
-            <FormControl
+            {/* <InputGroup.Text id="basic-addon1">Enter Image ID to delete.</InputGroup.Text> */}
+            {/* <FormControl
               placeholder="Image ID"
               aria-label="Caption"
               aria-describedby="basic-addon1"
-            />
+            /> */}
           </InputGroup>
-          <Button variant='primary' type='submit' value='Submit'>
+          {/* <Button variant='primary' type='submit' value='Submit'>
             Delete
-          </Button>
+          </Button> */}
         </Form.Group>
       </Form>
       <div>

@@ -37,6 +37,26 @@ export default function Delete ({ user, msgAlert }) {
 
   return (
     <div>
+
+//       {/* <Form onSubmit={handleSubmit}>
+//         <Form.Group
+//           controlId='formFile'
+//           className='mb-3'
+//           id='upload-file-input'>
+//           <InputGroup className="mb-3">
+//             <InputGroup.Text id="basic-addon1">Enter Image ID to delete.</InputGroup.Text>
+//             <FormControl
+//               placeholder="Image ID"
+//               aria-label="Caption"
+//               aria-describedby="basic-addon1"
+//             />
+//           </InputGroup>
+//           <Button variant='primary' type='submit' value='Submit'>
+//             Delete
+//           </Button>
+//         </Form.Group>
+//       </Form> */}
+
       <div>
         <input id="imageId" onChange={handleChange} type="text" value={imageId}></input>
         <button value="submit" onClick={handleSubmit}>Kill</button>
