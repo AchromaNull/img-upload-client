@@ -45,7 +45,8 @@ export default function IndexUpload ({ user }) {
         <li> {upload.caption}</li>
         <li>{upload._id}</li>
         <Update />
-        <Delete />
+        <Delete
+          user={user} />
       </div>
     ))
 
