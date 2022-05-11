@@ -1,3 +1,4 @@
+
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import apiUrl from './apiConfig'
@@ -38,17 +39,15 @@ export default function IndexUpload ({ msgAlert, user }) {
     )
   } else {
     console.log(uploads)
-    const uploadJSX = uploads.map(upload => (
+    const uploadJSX = uploads.map((upload) => (
       <div key={upload._id}>
-        <img className='image--index' src={upload.url}/>
-        <li>Owner ID: {upload.owner}</li>
+        <img className='image--index' src={upload.url} />
+        {/* <li>Owner ID: {upload.owner}</li> */}
         <li>{upload.title}</li>
         <li>{upload.caption}</li>
-        <li>Upload ID: {upload._id}</li>
-        <Update />
-        <Delete
-          user={user}
-          msgAlert={msgAlert}/>
+        {/* <li>Upload ID: {upload._id}</li> */}
+        <Update id={upload._id} user={user} msgAlert={msgAlert} />
+        <Delete id={upload._id} user={user} msgAlert={msgAlert} />
       </div>
     ))
 
