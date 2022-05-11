@@ -7,17 +7,18 @@ import apiUrl from './apiConfig'
 import InputGroup from 'react-bootstrap/InputGroup'
 // import FormControl from 'react-bootstrap/FormControl'
 // import Thumbnail from './components/Body/Thumbnail'
+import { updatedImageSuccess, updatedImageFailure } from './components/AutoDismissAlert/messages'
 
 // const FormData = require('form-data')
 
-export default function Update ({ user }) {
-  const [imageId, setImageId] = useState(null)
+export default function Update ({ user, msgAlert, id }) {
+  // const [imageId, setImageId] = useState(null)
   const [imageTitle, setImageTitle] = useState('')
   const [imageCaption, setImageCaption] = useState('')
 
-  const handleChangeId = (event) => {
-    setImageId(event.target.value)
-  }
+  // const handleChangeId = (event) => {
+  //   setImageId(event.target.value)
+  // }
   const handleChangeTitle = (event) => {
     setImageTitle(event.target.value)
   }
@@ -30,13 +31,12 @@ export default function Update ({ user }) {
     // data.append('delete', selected)
     const updateData = {
 
-      title: { imageTitle },
-      caption: { imageCaption }
+      title: imageTitle,
+      caption: imageCaption
 
     }
-    console.log(updateData)
     axios({
-      url: apiUrl + `/update/${imageId}`,
+      url: apiUrl + `/uploads/${id}`,
       method: 'PATCH',
       headers: {
         Authorization: `Bearer ${user.token}`
@@ -54,12 +54,22 @@ export default function Update ({ user }) {
     //   // : data + `${user}`
     // })
       .then((res) => {
-        console.log('Updated')
         return (res)
       })
-      // .then(res => setUpload(res.data.upload))
-      // .then(() => setLoading(false))
-      .catch(console.error)
+      .finally(() =>
+        msgAlert({
+          heading: 'Updated Successfully',
+          message: updatedImageSuccess,
+          variant: 'success'
+        })
+      )
+      .catch((error) => {
+        msgAlert({
+          heading: 'Update Failed with error: ' + error.message,
+          message: updatedImageFailure,
+          variant: 'danger'
+        })
+      })
   }
 
   //   const handleDelete = (event) => {
@@ -92,7 +102,7 @@ export default function Update ({ user }) {
         </Form.Group>
       </Form>
       <div>
-        <input id="imageId" name="imageId" onChange={handleChangeId} type="text" placeholder="image ID"value={imageId}></input>
+        {/* <input id="imageId" name="imageId" onChange={handleChangeId} type="text" placeholder="image ID"value={id}></input> */}
         <input id="imageId" name="imageTitle" onChange={handleChangeTitle} type="text" placeholder="new Title" value={imageTitle}></input>
         <input id="imageId" name="ImageCaption" onChange={handleChangeCaption} type="text" placeholder="new Caption" value={imageCaption}></input>
         <button value="submit" onClick={handleSubmit}>Update</button>

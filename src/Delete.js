@@ -1,21 +1,22 @@
 // import Form from 'react-bootstrap/Form'
 // import Button from 'react-bootstrap/Button'
-import React, { useState } from 'react'
+// import React, { useState } from 'react'
+import React from 'react'
 import axios from 'axios'
 import apiUrl from './apiConfig'
 // import InputGroup from 'react-bootstrap/InputGroup'
 // import FormControl from 'react-bootstrap/FormControl'
-import { deletedImageSuccess } from './components/AutoDismissAlert/messages'
+import { deletedImageSuccess, deletedImageFailure } from './components/AutoDismissAlert/messages'
 
-export default function Delete ({ user, msgAlert }) {
-  const handleChange = (event) => {
-    setImageId(event.target.value)
-  }
-  const [imageId, setImageId] = useState('')
+export default function Delete ({ user, msgAlert, id }) {
+  // const handleChange = (event) => {
+  //   setImageId(event.target.value)
+  // }
+  // const [imageId, setImageId] = useState('')
 
   const handleSubmit = (event) => {
     axios({
-      url: apiUrl + `/delete/${imageId}`,
+      url: apiUrl + `/delete/${id}`,
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${user.token}`
@@ -32,7 +33,13 @@ export default function Delete ({ user, msgAlert }) {
           variant: 'success'
         })
       )
-      .catch(console.error)
+      .catch((error) => {
+        msgAlert({
+          heading: 'Delete Failed with error: ' + error.message,
+          message: deletedImageFailure,
+          variant: 'danger'
+        })
+      })
   }
 
   return (
@@ -57,8 +64,8 @@ export default function Delete ({ user, msgAlert }) {
       </Form> */}
 
       <div>
-        <input id="imageId" onChange={handleChange} type="text" value={imageId}></input>
-        <button value="submit" onClick={handleSubmit}>Kill</button>
+        {/* <input id="imageId" onChange={handleChange} type="text" value={imageId}></input> */}
+        <button value="submit" onClick={handleSubmit}>Delete</button>
       </div>
     </div>
   )

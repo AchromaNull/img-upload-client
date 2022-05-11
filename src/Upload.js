@@ -1,7 +1,7 @@
 import Form from 'react-bootstrap/Form'
-import FormControl from 'react-bootstrap/FormControl'
+// import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button'
-import InputGroup from 'react-bootstrap/InputGroup'
+// import InputGroup from 'react-bootstrap/InputGroup'
 import React, { useState } from 'react'
 import axios from 'axios'
 import apiUrl from './apiConfig'
@@ -35,8 +35,6 @@ export default function Upload ({ user }) {
     const data = new FormData()
     data.append('upload', selected)
 
-    console.log(upload)
-
     data.append('caption', caption)
     data.append('title', title)
 
@@ -51,7 +49,6 @@ export default function Upload ({ user }) {
       // : data + `${user}`
     })
       .then((res) => {
-        console.log(res.data)
         return (res)
       })
       .then(res => setUpload(res.data.upload))
@@ -94,23 +91,23 @@ export default function Upload ({ user }) {
           id='upload-file-input'>
           <Form.Label>Upload Your Pic Yo</Form.Label>
           <Form.Control type='file' onChange={handleChange} />
-          <InputGroup className="mb-3">
+          {/* <InputGroup className="mb-3">
             <InputGroup.Text id="basic-addon1">Caption</InputGroup.Text>
             <FormControl
               placeholder="Caption"
               aria-label="Caption"
               aria-describedby="basic-addon1"
             />
-          </InputGroup>
-          <Button variant='primary' type='submit' value='Submit'>
-Submit
-          </Button>
+          </InputGroup> */}
           <Deets
             caption={caption}
             setCaption={setCaption}
             title={title}
             setTitle={setTitle}
           />
+          <Button variant='primary' type='submit' value='Submit'>
+Submit
+          </Button>
         </Form.Group>
       </Form>
       <div>{/* <Thumbnail /> */}</div>
