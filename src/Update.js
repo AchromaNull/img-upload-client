@@ -7,10 +7,11 @@ import apiUrl from './apiConfig'
 import InputGroup from 'react-bootstrap/InputGroup'
 // import FormControl from 'react-bootstrap/FormControl'
 // import Thumbnail from './components/Body/Thumbnail'
+import { updatedImageSuccess, updatedImageFailure } from './components/AutoDismissAlert/messages'
 
 // const FormData = require('form-data')
 
-export default function Update ({ user, id, msgAlerts }) {
+export default function Update ({ user, msgAlert, id }) {
   // const [imageId, setImageId] = useState(null)
   const [imageTitle, setImageTitle] = useState('')
   const [imageCaption, setImageCaption] = useState('')
@@ -34,7 +35,6 @@ export default function Update ({ user, id, msgAlerts }) {
       caption: imageCaption
 
     }
-    console.log(updateData)
     axios({
       url: apiUrl + `/uploads/${id}`,
       method: 'PATCH',
@@ -54,12 +54,22 @@ export default function Update ({ user, id, msgAlerts }) {
     //   // : data + `${user}`
     // })
       .then((res) => {
-        console.log('Updated')
         return (res)
       })
-      // .then(res => setUpload(res.data.upload))
-      // .then(() => setLoading(false))
-      .catch(console.error)
+      .finally(() =>
+        msgAlert({
+          heading: 'Updated Successfully',
+          message: updatedImageSuccess,
+          variant: 'success'
+        })
+      )
+      .catch((error) => {
+        msgAlert({
+          heading: 'Update Failed with error: ' + error.message,
+          message: updatedImageFailure,
+          variant: 'danger'
+        })
+      })
   }
 
   //   const handleDelete = (event) => {

@@ -6,7 +6,7 @@ import axios from 'axios'
 import apiUrl from './apiConfig'
 // import InputGroup from 'react-bootstrap/InputGroup'
 // import FormControl from 'react-bootstrap/FormControl'
-import { deletedImageSuccess } from './components/AutoDismissAlert/messages'
+import { deletedImageSuccess, deletedImageFailure } from './components/AutoDismissAlert/messages'
 
 export default function Delete ({ user, msgAlert, id }) {
   // const handleChange = (event) => {
@@ -33,7 +33,13 @@ export default function Delete ({ user, msgAlert, id }) {
           variant: 'success'
         })
       )
-      .catch(console.error)
+      .catch((error) => {
+        msgAlert({
+          heading: 'Delete Failed with error: ' + error.message,
+          message: deletedImageFailure,
+          variant: 'danger'
+        })
+      })
   }
 
   return (
