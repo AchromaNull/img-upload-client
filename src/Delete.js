@@ -26,7 +26,7 @@ export default function Delete ({ user, msgAlert, id }) {
       .then((res) => {
         return (res)
       })
-      .finally(() =>
+      .then(() =>
         msgAlert({
           heading: 'Deleted Successfully',
           message: deletedImageSuccess,
