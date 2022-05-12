@@ -3,8 +3,8 @@
 This is the frontend repo for our full stack image upload application. This app uses MongoDB as a database and integrates AWS for image storage, allowing users to upload photos with additional information and then access those photos from their thumbnails.
 
 ## Links 
-- [Deployed App]()
-- [Backend Repo]()
+- [Deployed App](https://achromanull.github.io/img-upload-client/)
+- [Backend Repo](https://github.com/AchromaNull/img-upload-api)
 
 ### Technologies Used
 
@@ -44,6 +44,13 @@ In preparation for work on this app, our team planned out wireframes, entity rel
   - date modified
   - owner (user who uploaded the image)
   - name
+
+## Future Updates
+
+As a team, we worked quickly to implement this app to meet our Minimum Viable Product. That said, we want to further update this app in a number of ways:
+- Styling and UI improvements
+- A feature to show just a single user's own uploads (not uploads from all users that we currently have set as the default login display)
+- Hiding UI features that the user cannot execute, like update on images that the user does not own
 
 ## About Us
 

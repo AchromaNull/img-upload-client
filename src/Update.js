@@ -56,7 +56,7 @@ export default function Update ({ user, msgAlert, id }) {
       .then((res) => {
         return (res)
       })
-      .finally(() =>
+      .then(() =>
         msgAlert({
           heading: 'Updated Successfully',
           message: updatedImageSuccess,
